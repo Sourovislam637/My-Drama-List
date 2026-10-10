@@ -144,7 +144,7 @@ async def search_dramas(query: str):
         results = await scraper.search_dramas(query)
         return results
     except Exception as e:
-        logger.error(f"Error searching dramas: {str(e)}")
+        logger.exception("Search failed for query=%r", query)
         raise HTTPException(
             status_code=500,
             detail={"code": 500, "error": True, "description": "Internal server error"}
